@@ -577,17 +577,17 @@ print("Choose 3 for Multiple_tags")
 print("")
 
 selection = input("Enter your choice: ")
-if selection == 1:
+if int(selection) == 1:
     video = cv2.VideoCapture('Tag0.mp4')
     bbox = (405, 180, 320, 247)
     flag = 0
 
-elif selection == 2:
+elif int(selection) == 2:
     video = cv2.VideoCapture('Tag2.mp4')
     bbox = (286, 163, 410, 347)
     flag = 1
 
-elif selection == 3:
+elif int(selection) == 3:
     video = cv2.VideoCapture('multipleTags.mp4')
     flag = 1
 else:
@@ -641,8 +641,8 @@ while video.isOpened():
 
     elif opened and not (flag == 1):
         a, b, c = frame.shape
-        a = a / 2
-        b = b / 2
+        a = int(a / 2)
+        b = int(b / 2)
         frame = cv2.resize(frame, (b, a))
         ok, bbox = tracker.update(frame)
         p1 = (int(bbox[0]), int(bbox[1]))

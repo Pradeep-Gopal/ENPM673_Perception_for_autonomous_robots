@@ -32,7 +32,7 @@ def contour_create(frame):
     final_contour_list = list()
 
     ret, thresh = cv2.threshold(edges, 127, 255, 0)
-    image, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    p, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     index = list()
     for hier in hierarchy[0]:
@@ -185,22 +185,6 @@ def decode(data_region, orientation):
     return new_data
 
 
-# def warp(frame, H):
-#     H_matrix_inverse = np.linalg.inv(H)
-#     tag = np.zeros((200, 200, 3))
-#     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-#     ret, grayImage = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
-#     for v in range(200):
-#         for u in range(200):
-#             x, y, z = np.matmul(H_matrix_inverse, [v, u, 1])
-#             if (y/z != float('inf') and (x/z != float('inf'))):
-#                 if (int(y / z) < 540 and int(y / z) > 0) and (int(x / z) < 960 and int(x / z) > 0) :
-#                     tag[v][u][0] = grayImage[int(y / z)][int(x / z)]
-#                     tag[v][u][1] = grayImage[int(y / z)][int(x / z)]
-#                     tag[v][u][2] = grayImage[int(y / z)][int(x / z)]
-#
-#     tag = tag.astype('uint8')
-#     return tag
 
 def warp(frame, H):
     H_matrix_inverse = np.linalg.inv(H)
@@ -243,17 +227,17 @@ print("Choose 3 for Multiple_tags")
 print("")
 
 selection = input("Enter your choice: ")
-if selection == 1:
+if int(selection) == 1:
     video = cv2.VideoCapture('Tag0.mp4')
     bbox = (405, 180, 320, 247)
     flag = 0
 
-elif selection == 2:
+elif int(selection) == 2:
     video = cv2.VideoCapture('Tag2.mp4')
     bbox = (268, 149, 441, 382)
     flag = 0
 
-elif selection == 3:
+elif int(selection) == 3:
     video = cv2.VideoCapture('multipleTags.mp4')
     flag = 1
 else:
@@ -307,8 +291,8 @@ while video.isOpened():
 
     elif opened and not (flag == 1):
         a, b, c = frame.shape
-        a = a / 2
-        b = b / 2
+        a = int(a / 2)
+        b = int(b / 2)
         frame = cv2.resize(frame, (b, a))
         ok, bbox = tracker.update(frame)
         p1 = (int(bbox[0]), int(bbox[1]))

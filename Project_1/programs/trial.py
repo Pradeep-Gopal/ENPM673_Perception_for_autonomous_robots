@@ -98,9 +98,11 @@ def homography(point1, point2):
         H.append([0, 0, 0, x[i], y[i], 1, -y_bar[i] * x[i], -y_bar[i] * y[i], -y_bar[i]])
     H = np.array(H)
     H.reshape(8, 9)
+    print("A = ", H)
     [U, S, V] = np.linalg.svd(H)
     H = np.array(V[-1, :])
     H = H.reshape(3,3)
+    print("H = ", H)
     return H
 
 def orientation_of_tag(image):

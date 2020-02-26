@@ -296,14 +296,14 @@ print("Choose 3 for Multiple_tags")
 print("")
 
 selection = input("Enter your choice: ")
-if selection == 1:
+if int(selection) == 1:
     video = cv2.VideoCapture('Tag0.mp4')
 
-elif selection == 2:
+elif int(selection) == 2:
     video = cv2.VideoCapture('Tag2.mp4')
 
 
-elif selection == 3:
+elif int(selection) == 3:
     video = cv2.VideoCapture('multipleTags.mp4')
 else:
     print("Invalid Selection")
@@ -319,8 +319,8 @@ while video.isOpened():
 
     if opened:
         a, b, c = frame.shape
-        a = a / 2
-        b = b / 2
+        a = int(a / 2)
+        b = int(b / 2)
         img = cv2.resize(frame, (b, a))
         main_script(img)
     else:

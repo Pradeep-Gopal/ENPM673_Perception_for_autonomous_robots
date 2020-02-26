@@ -31,7 +31,7 @@ def contour_create(frame):
     final_contour_list = list()
 
     ret, thresh = cv2.threshold(edges, 127, 255, 0)
-    image, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    r, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     index = list()
     for hier in hierarchy[0]:
@@ -109,7 +109,6 @@ def orientation_of_tag(image):
     # ret, th1 = cv2.threshold(image, 200, 255, cv2.THRESH_BINARY)
     white_region = 255
     data_region = th1[50:150, 50:150]
-    cv2.imshow("data",data_region)
 
     if data_region[90, 90] == white_region:
         position = "botton_right"
@@ -223,13 +222,13 @@ print("Choose 2 for Tag2")
 print("Choose 3 for Multiple_tags")
 print("")
 selection = input("Enter your choice: ")
-if selection == 1:
+if int(selection) == 1:
     video = cv2.VideoCapture('Tag0.mp4')
 
-elif selection == 2:
+elif int(selection) == 2:
     video = cv2.VideoCapture('Tag2.mp4')
 
-elif selection == 3:
+elif int(selection) == 3:
     video = cv2.VideoCapture('multipleTags.mp4')
 else:
     print("Invalid Selection")
@@ -245,8 +244,8 @@ while video.isOpened():
 
     if opened:
         a, b, c = frame.shape
-        a = a / 2
-        b = b / 2
+        a = int(a / 2)
+        b = int(b / 2)
         img = cv2.resize(frame, (b, a))
         main_script(img)
     else:
