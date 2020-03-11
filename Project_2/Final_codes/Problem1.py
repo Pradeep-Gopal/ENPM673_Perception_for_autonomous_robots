@@ -8,15 +8,16 @@ video = cv2.VideoCapture('Night Drive - 2689.mp4')
 #creating LUT table:
 gamma = 2.5
 inv_gamma = 1.0/gamma
+Value_red = 0.8
 table=np.zeros(256, dtype='uint8')
 for i in range(256):
-    table[i] = 0.9*255* np.power((i/255), inv_gamma)
+    table[i] = Value_red*255* np.power((i/255), inv_gamma)
 while (True):
     opened, frame = video.read()
     if opened:
         image = cv2.resize(frame, (frame.shape[1]//2, frame.shape[0]//2))
         adjusted = cv2.LUT(image, table)
-
+                
 # =============================================================================
 #   Code for Using CLAHE for Hue, Saturation and Value channels of BGR->HSV image
 #         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(10,10))
@@ -36,6 +37,5 @@ while (True):
         # cv2.imshow('fin',fin_output)
         if cv2.waitKey(2) & 0xff == ord('q'):
             break
-        i+=1
 cv2.destroyAllWindows()
 video.release()
