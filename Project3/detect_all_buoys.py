@@ -5,26 +5,49 @@ import math
 
 x = list(range(0, 256))
 
-o_mean_blue = np.array([170.1123])
-o_std_blue = np.array([36.1331436])
-o_mean_green = np.array([239.95395])
-o_std_green = np.array([7.3541856])
-o_mean_orange = np.array([252.3011604])
-o_std_orange = np.array([2.373163])
+# o_mean_blue = np.array([170.1123])
+# o_std_blue = np.array([36.1331436])
+# o_mean_green = np.array([239.95395])
+# o_std_green = np.array([7.3541856])
+# o_mean_orange = np.array([252.3011604])
+# o_std_orange = np.array([2.373163])
+#
+# y_mean_green = np.array([233.26306513511878])
+# y_std_green = np.array([7.913478610191204])
+# y_mean_blue = np.array([184.200466444682721])
+# y_std_blue = np.array([36.33593217248995])
+# y_mean_orange = np.array([235.14762282294373])
+# y_std_orange = np.array([6.327369698318637])
+#
+# g_mean_blue = np.array([230.92855834531522])
+# g_std_blue = np.array([11.825125082753653])
+# g_mean_green = np.array([200.98927408174694])
+# g_std_green = np.array([12.952317147474373])
+# g_mean_orange = np.array([244.4299727613101])
+# g_std_orange = np.array([5.067551652277579])
 
-y_mean_green = np.array([233.26306513511878])
-y_std_green = np.array([7.913478610191204])
-y_mean_blue = np.array([184.200466444682721])
-y_std_blue = np.array([36.33593217248995])
-y_mean_orange = np.array([235.14762282294373])
-y_std_orange = np.array([6.327369698318637])
 
-g_mean_blue = np.array([230.92855834531522])
-g_std_blue = np.array([11.825125082753653])
-g_mean_green = np.array([200.98927408174694])
-g_std_green = np.array([12.952317147474373])
-g_mean_orange = np.array([244.4299727613101])
-g_std_orange = np.array([5.067551652277579])
+o_mean_blue=np.array([153.6105954477455])
+o_std_blue=np.array([35.645345579156796])
+o_mean_green=np.array([237.72562582031875])
+o_std_green=np.array([8.415651120364487])
+o_mean_orange=np.array([251.9544956696381])
+o_std_orange=np.array([2.5698329315125505])
+
+y_mean_green = np.array([228.36676848886714])
+y_std_green = np.array([11.534612731323769])
+y_mean_blue = np.array([168.69932624883327])
+y_std_blue = np.array([37.736126383805704])
+y_mean_orange = np.array([235.21833286773568])
+y_std_orange = np.array([5.662585713799174])
+
+g_mean_blue=np.array([190.98365470748638])
+g_std_blue=np.array([20.76008569347966])
+g_mean_green=np.array([155.0722972243808])
+g_std_green=np.array([15.859964345501147])
+g_mean_orange=np.array([239.87056150841687])
+g_std_orange=np.array([9.134057716050851])
+
 
 
 def gaussian(x, mu, sig):
@@ -81,13 +104,12 @@ def image_process(frame, y_gauss_b, y_gauss_g, y_gauss_r, g_gauss_b, g_gauss_g, 
             z = frame_g[i][j]
             h = frame_r[i][j]
 
-            if ((y_gauss_r[y] + y_gauss_r[z]) / 2) > 0.05 and ((y_gauss_b[y] + y_gauss_b[z]) / 2) < 0.015 and \
-                    frame_b[i][j] < 130:
+            if ((y_gauss_r[y] + y_gauss_r[z]) / 2) > 0.05 and ((y_gauss_b[y] + y_gauss_b[z]) / 2) < 0.015 and frame_b[i][j] < 130:
                 out2[i][j] = 255
             else:
                 out2[i][j] = 0
 
-            if g_gauss_r[z] > 0.06 and g_gauss_g[z] < 0.03 and g_gauss_b[z] < 0.03 and frame_r[i][j] < 200:
+            if g_gauss_r[z] > 0.03 and g_gauss_g[z] < 0.025 and g_gauss_b[z] < 0.02 and frame_r[i][j] < 180:
                 out1[i][j] = 255
             else:
                 out1[i][j] = 0

@@ -5,12 +5,19 @@ import math
 
 
 x=list(range(0, 256))
-mean_blue=np.array([170.1123])
-std_blue=np.array([36.1331436])
-mean_green=np.array([239.95395])
-std_green=np.array([7.3541856])
-mean_orange=np.array([252.3011604])
-std_orange=np.array([2.373163])
+# mean_blue=np.array([170.1123])
+# std_blue=np.array([36.1331436])
+# mean_green=np.array([239.95395])
+# std_green=np.array([7.3541856])
+# mean_orange=np.array([252.3011604])
+# std_orange=np.array([2.373163])
+
+mean_blue=np.array([153.6105954477455])
+std_blue=np.array([35.645345579156796])
+mean_green=np.array([237.72562582031875])
+std_green=np.array([8.415651120364487])
+mean_orange=np.array([251.9544956696381])
+std_orange=np.array([2.5698329315125505])
 
 
 def gaussian(x, mu, sig):

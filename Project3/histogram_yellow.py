@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import os
 import math
 
-path = "Dataset/Yellow/"
+path = "Dataset1/Yellow/"
 
 
 def gaussian(x, mu, sig):

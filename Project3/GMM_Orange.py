@@ -12,7 +12,7 @@ std1 = 10
 std2 = 10
 std3 = 10
 
-path = "Dataset/Orange/"
+path = "Dataset1/Orange/"
 
 
 def calculateGaussian(x, mean, std):

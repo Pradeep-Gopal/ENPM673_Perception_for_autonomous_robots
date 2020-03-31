@@ -5,12 +5,19 @@ import math
 
 
 x=list(range(0, 256))
-mean_blue=np.array([230.92855834531522])
-std_blue=np.array([11.825125082753653])
-mean_green=np.array([200.98927408174694])
-std_green=np.array([12.952317147474373])
-mean_orange=np.array([244.4299727613101])
-std_orange=np.array([5.067551652277579])
+# mean_blue=np.array([230.92855834531522])
+# std_blue=np.array([11.825125082753653])
+# mean_green=np.array([200.98927408174694])
+# std_green=np.array([12.952317147474373])
+# mean_orange=np.array([244.4299727613101])
+# std_orange=np.array([5.067551652277579])
+
+mean_blue=np.array([190.98365470748638])
+std_blue=np.array([20.76008569347966])
+mean_green=np.array([155.0722972243808])
+std_green=np.array([15.859964345501147])
+mean_orange=np.array([239.87056150841687])
+std_orange=np.array([9.134057716050851])
 
 
 def gaussian(x, mu, sig):
@@ -39,7 +46,7 @@ def image_process(frame, gauss_b, gauss_g, gauss_r):
         for j in range(0, frame_g.shape[1]):
             z = frame_g[i][j]
 
-            if gauss_r[z] > 0.06 and gauss_g[z] < 0.03 and gauss_b[z] < 0.03 and frame_r[i][j] < 200:
+            if gauss_r[z] > 0.03 and gauss_g[z] < 0.025 and gauss_b[z] < 0.02 and frame_r[i][j] < 180:
                 #                     print(z)
                 out[i][j] = 255
             else:
