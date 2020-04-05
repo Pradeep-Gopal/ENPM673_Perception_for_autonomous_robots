@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import os
 import math
 
-path = "Dataset1/Orange/"
+path = "Dataset1/Orange/Training/"
 
 
 def gaussian(x, mu, sig):
@@ -58,7 +58,7 @@ def plot_bellcurve(img):
     std = stds[2]
     gauss = gaussian(x, mean, std)
 
-    plt.plot(gauss,)
+    plt.plot(gauss, color='orange')
     plt.show()
 
 

@@ -5,20 +5,20 @@ import math
 
 
 x=list(range(0, 256))
-# mean_blue=np.array([230.92855834531522])
-# std_blue=np.array([11.825125082753653])
-# mean_green=np.array([200.98927408174694])
-# std_green=np.array([12.952317147474373])
-# mean_orange=np.array([244.4299727613101])
-# std_orange=np.array([5.067551652277579])
 
-mean_blue=np.array([190.98365470748638])
-std_blue=np.array([20.76008569347966])
-mean_green=np.array([155.0722972243808])
-std_green=np.array([15.859964345501147])
-mean_orange=np.array([239.87056150841687])
-std_orange=np.array([9.134057716050851])
+# mean_blue=np.array([190.98365470748638])
+# std_blue=np.array([20.76008569347966])
+# mean_green=np.array([155.0722972243808])
+# std_green=np.array([15.859964345501147])
+# mean_orange=np.array([239.87056150841687])
+# std_orange=np.array([9.134057716050851])
 
+mean_blue=np.array([184.90079776755584])
+std_blue=np.array([20.577573078086086])
+mean_green=np.array([152.06534796946667])
+std_green=np.array([15.898153337093653])
+mean_orange=np.array([236.81438517865615])
+std_orange=np.array([11.714241624592178])
 
 def gaussian(x, mu, sig):
     gauss = ((1/(sig*math.sqrt(2*math.pi)))*np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.))))
@@ -55,7 +55,7 @@ def image_process(frame, gauss_b, gauss_g, gauss_r):
     kernel3 = np.ones((2, 2), np.uint8)
 
     dilation3 = cv2.dilate(threshold3, kernel3, iterations=9)
-    _, contours1, _ = cv2.findContours(dilation3, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    contours1, ret = cv2.findContours(dilation3, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     frame = draw_circle(frame, contours1)
     cv2.imshow('Green detection', frame)
     return
