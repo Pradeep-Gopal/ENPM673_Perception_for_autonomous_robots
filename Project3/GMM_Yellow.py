@@ -7,8 +7,8 @@ n = 0
 mean1 = 190
 mean2 = 150
 mean3 = 250
-
 std1 = 10
+
 std2 = 10
 std3 = 10
 
@@ -32,45 +32,45 @@ def em_gmm(pixel1, pixel2):
 
     while n != 50:
         b11 = []
-        b21 = []
-        b31 = []
         b12 = []
+        b13 = []
+        b21 = []
         b22 = []
-        b32 = []
+        b23 = []
         for pix1 in pixel1:
             p11 = calculateGaussian(pix1, mean1, std1)
             p12 = calculateGaussian(pix1, mean2, std2)
             p13 = calculateGaussian(pix1, mean3, std3)
             b11.append((p11 * (1 / 3.0)) / (p11 * (1 / 3.0) + p12 * (1 / 3.0) + p13 * (1 / 3.0)))
-            b21.append((p12 * (1 / 3.0)) / (p11 * (1 / 3.0) + p12 * (1 / 3.0) + p13 * (1 / 3.0)))
-            b31.append((p13 * (1 / 3.0)) / (p11 * (1 / 3.0) + p12 * (1 / 3.0) + p13 * (1 / 3.0)))
+            b12.append((p12 * (1 / 3.0)) / (p11 * (1 / 3.0) + p12 * (1 / 3.0) + p13 * (1 / 3.0)))
+            b13.append((p13 * (1 / 3.0)) / (p11 * (1 / 3.0) + p12 * (1 / 3.0) + p13 * (1 / 3.0)))
         for pix2 in pixel2:
             p21 = calculateGaussian(pix2, mean1, std1)
             p22 = calculateGaussian(pix2, mean2, std2)
             p23 = calculateGaussian(pix2, mean3, std3)
-            b12.append((p21 * (1 / 3.0)) / (p21 * (1 / 3.0) + p22 * (1 / 3.0) + p23 * (1 / 3.0)))
+            b21.append((p21 * (1 / 3.0)) / (p21 * (1 / 3.0) + p22 * (1 / 3.0) + p23 * (1 / 3.0)))
             b22.append((p22 * (1 / 3.0)) / (p21 * (1 / 3.0) + p22 * (1 / 3.0) + p23 * (1 / 3.0)))
-            b32.append((p23 * (1 / 3.0)) / (p21 * (1 / 3.0) + p22 * (1 / 3.0) + p23 * (1 / 3.0)))
+            b23.append((p23 * (1 / 3.0)) / (p21 * (1 / 3.0) + p22 * (1 / 3.0) + p23 * (1 / 3.0)))
             
         m11 = np.sum(np.array(b11) * np.array(pixel1)) / np.sum(np.array(b11))
-        m21 = np.sum(np.array(b21) * np.array(pixel1)) / np.sum(np.array(b21))
-        m31 = np.sum(np.array(b31) * np.array(pixel1)) / np.sum(np.array(b31))
+        m12 = np.sum(np.array(b12) * np.array(pixel1)) / np.sum(np.array(b12))
+        m13 = np.sum(np.array(b13) * np.array(pixel1)) / np.sum(np.array(b13))
         s11 = (np.sum(np.array(b11) * ((np.array(pixel1)) - mean1) ** 2) / np.sum(np.array(b11))) ** (1 / 2.0)
-        s21 = (np.sum(np.array(b21) * ((np.array(pixel1)) - mean2) ** 2) / np.sum(np.array(b21))) ** (1 / 2.0)
-        s31 = (np.sum(np.array(b31) * ((np.array(pixel1)) - mean3) ** 2) / np.sum(np.array(b31))) ** (1 / 2.0)
-        m12 = np.sum(np.array(b12) * np.array(pixel2)) / np.sum(np.array(b12))
+        s12 = (np.sum(np.array(b12) * ((np.array(pixel1)) - mean2) ** 2) / np.sum(np.array(b12))) ** (1 / 2.0)
+        s13 = (np.sum(np.array(b13) * ((np.array(pixel1)) - mean3) ** 2) / np.sum(np.array(b13))) ** (1 / 2.0)
+        m21 = np.sum(np.array(b21) * np.array(pixel2)) / np.sum(np.array(b21))
         m22 = np.sum(np.array(b22) * np.array(pixel2)) / np.sum(np.array(b22))
-        m32 = np.sum(np.array(b32) * np.array(pixel2)) / np.sum(np.array(b32))
-        s12 = (np.sum(np.array(b12) * ((np.array(pixel2)) - mean1) ** 2) / np.sum(np.array(b12))) ** (1 / 2.0)
+        m23 = np.sum(np.array(b23) * np.array(pixel2)) / np.sum(np.array(b23))
+        s21 = (np.sum(np.array(b21) * ((np.array(pixel2)) - mean1) ** 2) / np.sum(np.array(b21))) ** (1 / 2.0)
         s22 = (np.sum(np.array(b22) * ((np.array(pixel2)) - mean2) ** 2) / np.sum(np.array(b22))) ** (1 / 2.0)
-        s32 = (np.sum(np.array(b32) * ((np.array(pixel2)) - mean3) ** 2) / np.sum(np.array(b32))) ** (1 / 2.0)
+        s23 = (np.sum(np.array(b23) * ((np.array(pixel2)) - mean3) ** 2) / np.sum(np.array(b23))) ** (1 / 2.0)
         n = n + 1
-        mean1 = (m11 + m12) / 2
-        mean2 = (m21 + m22) / 2
-        mean3 = (m31 + m32) / 2
-        std1 = (s11 + s12) / 2
-        std2 = (s21 + s22) / 2
-        std3 = (s31 + s32) / 2
+        mean1 = (m11 + m21) / 2
+        mean2 = (m12 + m22) / 2
+        mean3 = (m13 + m23) / 2
+        std1 = (s11 + s21) / 2
+        std2 = (s12 + s22) / 2
+        std3 = (s13 + s23) / 2
         print("Iteration = ", n)
         print(mean1, mean2, mean3)
         print(std1, std2, std3)
